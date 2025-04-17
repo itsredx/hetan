@@ -40,7 +40,7 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <address className="not-italic text-muted-foreground">
               <p>Home Economics Department</p>
-              <p>Kano State College of Education</p>
+              <p>Kano State Ministry of Education</p>
               <p>Kano, Nigeria</p>
               <p className="mt-2">Email: info@hetankano.org</p>
             </address>
