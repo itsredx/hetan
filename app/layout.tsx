@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "HETAN Kano Chapter",
   description: "Home Economics Teachers Association of Nigeria - Kano Chapter",
-    generator: 'v0.dev'
+    generator: 'Red X'
 }
 
 export default function RootLayout({
