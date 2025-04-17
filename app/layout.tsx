@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "HETAN Kano Chapter",
   description: "Home Economics Teachers Association of Nigeria - Kano Chapter",
-    generator: 'Red X'
+    generator: 'Red X',
     icons: {
       icon: '/favicon.ico',
       shortcut: '/icon.png', // Often maps to favicon.ico
