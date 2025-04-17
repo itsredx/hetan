@@ -1,26 +1,25 @@
 "use client"
 
 import { useState } from "react"
-import Image from "next/image" // Import the Next.js Image component
 import { Dialog, DialogContent } from "@/components/ui/dialog"
 import { X } from "lucide-react"
 
-// Updated data with actual image and video paths from the public folder
-// Assumes images are in public/images/ and video is in public/videos/
+// Placeholder data for the media showcase
+// In a real application, these would be actual image and video paths
 const mediaItems = [
-  { type: "image", ratio: "16/9", src: "/images/member-1.jpg", description: "HETAN workshop session" },
-  { type: "image", ratio: "16/9", src: "/images/member-2.jpg", description: "Members at annual conference" },
-  { type: "image", ratio: "16/9", src: "/images/member-3.jpg", description: "Teaching demonstration" },
-  { type: "image", ratio: "4/3", src: "/images/member-4.jpg", description: "Community outreach program" },
-  { type: "image", ratio: "2/1", src: "/images/member-5.jpg", description: "Executive committee meeting" },
-  { type: "image", ratio: "5/3", src: "/images/member-6.jpg", description: "School visitation" },
-  { type: "image", ratio: "5/3", src: "/images/member-7.jpg", description: "Student exhibition" },
-  { type: "image", ratio: "1/1", src: "/images/member-8.jpg", description: "Resource development session" },
-  { type: "image", ratio: "9/16", src: "/images/member-9.jpg", description: "Practical teaching session" },
-  { type: "image", ratio: "9/16", src: "/images/member-10.jpg", description: "Skills acquisition workshop" },
-  { type: "image", ratio: "9/16", src: "/images/member-11.jpg", description: "Teacher training program" },
-  { type: "image", ratio: "9/16", src: "/images/member-12.jpg", description: "Curriculum development meeting" },
-  { type: "video", ratio: "9/16", src: "/videos/member-video.mp4", description: "Teaching methodology demonstration" },
+  { type: "image", ratio: "16/9", placeholder: "Photo 1 (960x540)", description: "HETAN workshop session" },
+  { type: "image", ratio: "16/9", placeholder: "Photo 2 (960x540)", description: "Members at annual conference" },
+  { type: "image", ratio: "16/9", placeholder: "Photo 3 (960x540)", description: "Teaching demonstration" },
+  { type: "image", ratio: "4/3", placeholder: "Photo 4 (1080x808)", description: "Community outreach program" },
+  { type: "image", ratio: "2/1", placeholder: "Photo 5 (569x272)", description: "Executive committee meeting" },
+  { type: "image", ratio: "5/3", placeholder: "Photo 6 (569x343)", description: "School visitation" },
+  { type: "image", ratio: "5/3", placeholder: "Photo 7 (590x350)", description: "Student exhibition" },
+  { type: "image", ratio: "1/1", placeholder: "Photo 8 (540x502)", description: "Resource development session" },
+  { type: "image", ratio: "9/16", placeholder: "Photo 9 (540x960)", description: "Practical teaching session" },
+  { type: "image", ratio: "9/16", placeholder: "Photo 10 (540x960)", description: "Skills acquisition workshop" },
+  { type: "image", ratio: "9/16", placeholder: "Photo 11 (540x960)", description: "Teacher training program" },
+  { type: "image", ratio: "9/16", placeholder: "Photo 12 (540x960)", description: "Curriculum development meeting" },
+  { type: "video", ratio: "9/16", placeholder: "Video 1 (540x960)", description: "Teaching methodology demonstration" },
 ]
 
 export default function MemberShowcase() {
@@ -34,8 +33,7 @@ export default function MemberShowcase() {
 
   const handleClose = () => {
     setIsOpen(false)
-    // Delay setting selectedItem to null slightly to allow fade-out animation if desired
-    setTimeout(() => setSelectedItem(null), 300);
+    setSelectedItem(null)
   }
 
   // Function to determine the appropriate column span based on the aspect ratio
@@ -73,42 +71,28 @@ export default function MemberShowcase() {
         contributions to Home Economics education.
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[minmax(100px,_auto)]"> {/* Adjusted auto-rows */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-min">
         {mediaItems.map((item, index) => (
           <div
             key={index}
-            className={`${getColumnSpan(item.ratio)} ${getRowSpan(item.ratio)} bg-muted rounded-lg overflow-hidden shadow-sm h-full cursor-pointer relative group`} // Added relative and group here
-            style={{ aspectRatio: item.ratio.replace("/", " / ") }} // Apply aspect ratio to the container
+            className={`${getColumnSpan(item.ratio)} ${getRowSpan(item.ratio)} bg-muted rounded-lg overflow-hidden shadow-sm h-full cursor-pointer`}
             onClick={() => handleItemClick(item)}
           >
-            {/* Render Image or Video */}
-            {item.type === "image" ? (
-              <Image
-                src={item.src}
-                alt={item.description}
-                layout="fill" // Fill the container
-                objectFit="cover" // Cover the container, cropping if necessary
-                className="transition-transform duration-300 group-hover:scale-105" // Added zoom effect on hover
-                priority={index < 8} // Prioritize loading images visible above the fold (adjust count as needed)
-                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw" // Help optimize image loading
-              />
-            ) : (
-              <video
-                src={item.src}
-                muted // Mute videos in the grid view
-                loop // Loop videos in the grid view
-                playsInline // Important for mobile browsers
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" // Added zoom effect on hover
+            <div className="relative h-full w-full group">
+              {/* Placeholder for actual images/videos */}
+              <div
+                className={`bg-gradient-to-br from-primary/20 to-amber-100/40 w-full h-full flex items-center justify-center p-4 text-center`}
+                style={{ aspectRatio: item.ratio.replace("/", "/") }}
               >
-                Your browser does not support the video tag.
-              </video>
-            )}
+                <div className="text-primary font-medium">{item.placeholder}</div>
+              </div>
 
-            {/* Overlay with description */}
-            <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4 text-white">
-              <p className="font-medium text-center text-sm sm:text-base">{item.description}</p>
-              <div className="mt-2 text-xs sm:text-sm border border-white/70 px-2 py-1 rounded-full">
-                {item.type === "video" ? "Play Video" : "View Image"}
+              {/* Overlay with description */}
+              <div className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4 text-white">
+                <p className="font-medium text-center">{item.description}</p>
+                <div className="mt-3 text-sm border border-white/70 px-3 py-1 rounded-full">
+                  {item.type === "video" ? "Play Video" : "View Image"}
+                </div>
               </div>
             </div>
           </div>
@@ -116,45 +100,33 @@ export default function MemberShowcase() {
       </div>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-4xl max-h-[90vh] p-0 overflow-hidden flex flex-col"> {/* Adjusted padding and flex */}
+        <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-y-auto">
           <button
             onClick={handleClose}
-            className="absolute right-3 top-3 z-50 p-2 rounded-full bg-black/50 hover:bg-black/70 text-white transition-colors"
+            className="absolute right-4 top-4 p-2 rounded-full bg-black/10 hover:bg-black/20 transition-colors"
             aria-label="Close"
           >
-            <X className="h-5 w-5" />
+            <X className="h-4 w-4" />
           </button>
 
           {selectedItem && (
-            <div className="flex-grow flex items-center justify-center bg-black/90 p-1"> {/* Center content */}
-              {/* Use relative container for sizing */}
-              <div className="relative w-full h-full max-w-full max-h-[calc(90vh-80px)]"> {/* Limit size */}
-                 {selectedItem.type === "image" ? (
-                  <Image
-                    src={selectedItem.src}
-                    alt={selectedItem.description}
-                    layout="fill"
-                    objectFit="contain" // Contain the image within the bounds
-                  />
-                ) : (
-                  <video
-                    src={selectedItem.src}
-                    controls // Show video controls in the dialog
-                    autoPlay // Autoplay when opened
-                    className="w-full h-full object-contain" // Contain the video
-                  >
-                    Your browser does not support the video tag.
-                  </video>
-                )}
+            <div className="p-1">
+              <div
+                className="bg-gradient-to-br from-primary/20 to-amber-100/40 w-full rounded-lg flex items-center justify-center p-8 text-center"
+                style={{ aspectRatio: selectedItem.ratio.replace("/", "/") }}
+              >
+                <div className="text-primary font-medium text-xl">{selectedItem.placeholder}</div>
+              </div>
+              <div className="mt-4">
+                <h3 className="text-xl font-semibold text-primary">{selectedItem.description}</h3>
+                <p className="text-muted-foreground mt-2">
+                  {selectedItem.type === "video"
+                    ? "This is a video showcasing HETAN Kano Chapter activities."
+                    : "This image captures a moment from HETAN Kano Chapter activities."}
+                </p>
               </div>
             </div>
           )}
-           {selectedItem && (
-             <div className="p-4 bg-background border-t"> {/* Info section */}
-                <h3 className="text-lg font-semibold text-primary">{selectedItem.description}</h3>
-                {/* You can add more descriptive text here if needed */}
-             </div>
-           )}
         </DialogContent>
       </Dialog>
     </div>
