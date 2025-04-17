@@ -37,6 +37,13 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <Link href="/" className="flex items-center space-x-2">
+        <Image
+            src="/icon.png" // <-- Path relative to the 'public' directory
+            alt="HETAN Logo"
+            width={32} // <-- Set desired width (adjust as needed)
+            height={32} // <-- Set desired height (adjust as needed)
+            className="h-8 w-8" // Optional: Tailwind classes for sizing, matching width/height
+          />
           <span className="text-xl font-bold text-primary">HETAN</span>
           <span className="hidden sm:inline-block text-sm font-medium">Kano Chapter</span>
         </Link>

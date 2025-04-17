@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   title: "HETAN Kano Chapter",
   description: "Home Economics Teachers Association of Nigeria - Kano Chapter",
     generator: 'Red X'
+    icons: {
+      icon: '/favicon.ico',
+      shortcut: '/icon.png', // Often maps to favicon.ico
+      apple: '/icon.png', 
+    }
 }
 
 export default function RootLayout({
